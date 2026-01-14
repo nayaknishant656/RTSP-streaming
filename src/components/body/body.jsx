@@ -1,16 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './body.css'
 
 const MOCK_CAMERAS = [
-    { id: 1, name: 'Front Entrance', location: 'Main Gate', status: 'Online', resolution: '4K', fps: '30' },
-    { id: 2, name: 'Server Room', location: 'B1 Floor', status: 'Online', resolution: '1080p', fps: '60' },
-    { id: 3, name: 'Warehouse A', location: 'Storage Area', status: 'Offline', resolution: '720p', fps: '15' },
-    { id: 4, name: 'Parking Lot', location: 'Zone 4', status: 'Online', resolution: '1080p', fps: '30' },
-    { id: 5, name: 'Office Lobby', location: 'Reception', status: 'Online', resolution: '4K', fps: '24' },
-    { id: 6, name: 'Back Alley', location: 'Service Exit', status: 'Online', resolution: '1080p', fps: '30' },
+    { id: 1, name: 'Main Movie Feed', location: 'External', status: 'Online', resolution: '4K', fps: '30' },
+    { id: 2, name: 'Test Pattern 1', location: 'Internal', status: 'Online', resolution: '1080p', fps: '60' },
+    { id: 3, name: 'Test Pattern 2', location: 'Internal', status: 'Online', resolution: '720p', fps: '15' },
+    { id: 4, name: 'Public Square', location: 'City Center', status: 'Online', resolution: '1080p', fps: '30' },
+    { id: 5, name: 'Highway Traffic', location: 'North Exit', status: 'Online', resolution: '4K', fps: '24' },
 ]
 
 export default function Body() {
+    const navigate = useNavigate();
     return (
         <main className="body-container">
             <section className="hero-section">
@@ -53,7 +54,12 @@ export default function Body() {
                                     <span className="meta-label">FPS</span>
                                     <span className="meta-value">{camera.fps}</span>
                                 </div>
-                                <button className="btn-view">View Full</button>
+                                <button
+                                    className="btn-view"
+                                    onClick={() => navigate(`/player/${camera.id}`)}
+                                >
+                                    View Full
+                                </button>
                             </div>
                         </div>
                     </div>
